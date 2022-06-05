@@ -33,4 +33,34 @@ describe('ticketListReducer', () => {
       }
     })
   });
+
+  test('Should successfully update ticket data to mainTicketList', () => {
+    const { names, location, issue, id } = ticketData;
+    action = {
+      type: 'ADD_TICKET',
+      names: names,
+      location: location,
+      issue: issue,
+      id: id
+    };
+    const newNames = 'Mario and Luigi'
+    const newAction = {
+      type: 'ADD_TICKET',
+      names: newNames,
+      location: location,
+      issue: issue,
+      id: id
+    };
+
+    const oldState = ticketListReducer({}, action)
+
+    expect(ticketListReducer(oldState, newAction)).toEqual({
+      [id] : {
+        names: newNames,
+        location: location,
+        issue: issue,
+        id: id
+      }
+    })
+  });
 });
