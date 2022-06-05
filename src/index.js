@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 const store = createStore(reducer);
 
 ReactDOM.render(
+  //Wrapping App in Provider allows all children of App access to the redux store
   <Provider store={store}>
     <App />
   </Provider>,

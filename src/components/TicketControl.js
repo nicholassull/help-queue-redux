@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
 import TicketDetail from './TicketDetail';
@@ -95,5 +96,7 @@ class TicketControl extends React.Component {
   }
 
 }
+
+TicketControl = connect()(TicketControl);
 
 export default TicketControl;
