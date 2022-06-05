@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 //Instantiates the redux store using our ticket reducer.
 const store = createStore(reducer);
 
+store.subscribe(() => console.log(store.getState()));
+
 ReactDOM.render(
   //Wrapping App in Provider allows all children of App access to the redux store
   <Provider store={store}>
