@@ -35,9 +35,7 @@ class TicketControl extends React.Component {
     const { dispatch } = this.props;
     const action = a.addTicket(newTicket);
     dispatch(action);
-    const action2 = {
-      type: "TOGGLE_FORM"
-    }
+    const action2 = a.toggleForm();
     dispatch(action2);
   }
 
@@ -48,10 +46,7 @@ class TicketControl extends React.Component {
 
   handleDeletingTicket = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_TICKET',
-      id: id
-    }
+    const action = a.deleteTicket(id);
     dispatch(action);
     this.setState({
       selectedTicket: null
