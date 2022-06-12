@@ -8,6 +8,7 @@ describe('ticketListReducer', () => {
     names: 'Ryan and Amber',
     location: '4b',
     issue: 'Redux action is not working correctly.',
+    timeOpen: 0,
     id: 1
   }
 
@@ -86,6 +87,25 @@ describe('ticketListReducer', () => {
         location: '2a',
         issue: 'Reducer has side effects.',
         id: 2 }
+    });
+  });
+  //Testing time functionality
+  test('Should add a formatted wait time to ticket entry', () => {
+    const { names, location, issue, timeOpen, id } = ticketData;
+    action = {
+      type: c.UPDATE_TIME,
+      formattedWaitTime: '4 minutes',
+      id: id
+    };
+    expect(ticketListReducer({ [id] : ticketData }, action)).toEqual({
+      [id]: {
+        names: names,
+        location: location,
+        issue: issue,
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: '4 minutes'
+      }
     });
   });
 });
