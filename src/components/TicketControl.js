@@ -13,15 +13,16 @@ class TicketControl extends React.Component {
     super(props);
     console.log(props);
     this.state = {
-      selectedTicket: null,
       editing: false
     };
   }
 
   handleClick = () => {
     if (this.state.selectedTicket != null) {
+      const { dispatch } = this.props;
+      const action = a.selectTicket(null);
+      dispatch(action);
       this.setState({
-        selectedTicket: null,
         editing: false
       });
     } else {
@@ -41,6 +42,7 @@ class TicketControl extends React.Component {
 
   handleChangingSelectedTicket = (id) => {
     const selectedTicket = this.props.mainTicketList[id];
+    const { dispatch } = this.props;
     this.setState({selectedTicket: selectedTicket});
   }
 
@@ -99,13 +101,15 @@ class TicketControl extends React.Component {
 
 TicketControl.propTypes = {
   mainTicketList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
+  formVisibleOnPage: PropTypes.bool,
+  selectedTicket: PropTypes.number,
 }
 
 const mapStateToProps = state => {
   return {
     mainTicketList: state.mainTicketList,
-    formVisibleOnPage: state.formVisibleOnPage
+    formVisibleOnPage: state.formVisibleOnPage,
+    selectedTicket: state.selectedTicket
   }
 }
 
