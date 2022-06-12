@@ -2,6 +2,7 @@ import rootReducer from '../../reducers/index';
 import { createStore } from 'redux';
 import formVisibleReducer from '../../reducers/form-visible-reducer';
 import ticketListReducer from '../../reducers/ticket-list-reducer';
+import selectedTicketReducer from "../../reducers/selected-ticket-reducer";
 import * as c from '../../actions/ActionTypes'
 
 let store = createStore(rootReducer);
@@ -10,7 +11,8 @@ describe("rootReducer", () => {
   test('Should return default state if no action type is recognized', () => {
     expect(rootReducer({}, { type: null })).toEqual({
       mainTicketList: {},
-      formVisibleOnPage: false
+      formVisibleOnPage: false,
+      selectedTicket: null,
     });
   });
 
@@ -21,6 +23,10 @@ describe("rootReducer", () => {
   test('Check that initial state of formVisibleReducer matches root reducer', () => {
     expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, { type: null }));
   });
+
+  test('Check that initial state of selectedTicketReducer matched root reducer', () => {
+    expect(store.getState().selectedTicket).toEqual(selectedTicketReducer(undefined, { type: null }));
+  })
 
   test('Check that ADD_TICKET action works for ticketListReducer and root reducer', () => {
     const action = {
@@ -40,5 +46,14 @@ describe("rootReducer", () => {
     }
     store.dispatch(action);
     expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, action));
+  });
+
+  test('Check that SELECT_TICKET action works for selectedTicketReducer and root reducer', () => {
+    const action = {
+      type: c.SELECT_TICKET,
+      id: 2
+    }
+    store.dispatch(action);
+    expect(store.getState().selectedTicket).toEqual(selectedTicketReducer(undefined, action));
   });
 });

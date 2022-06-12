@@ -1,5 +1,4 @@
 import selectedTicketReducer from "../../reducers/selected-ticket-reducer";
-import ticketListReducer from "../../reducers/ticket-list-reducer";
 import * as c from './../../actions/ActionTypes';
 
 describe("selectedTicketReducer", () => {
@@ -8,12 +7,10 @@ describe("selectedTicketReducer", () => {
   });
   
   test('Should update selectedTicket to value of id', () => {
-    
     const action = {
       type: c.SELECT_TICKET,
       id: 1
     }
-    
     expect(selectedTicketReducer(null, action)).toEqual(1);
   });
 })
