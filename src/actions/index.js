@@ -20,3 +20,8 @@ export const addTicket = (ticket) => {
     id
   }
 }
+
+export const selectTicket = (id) => ({
+  type: c.SELECT_TICKET,
+  id
+})
